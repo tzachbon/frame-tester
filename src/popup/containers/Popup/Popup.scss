@@ -1,0 +1,19 @@
+@import "./../../../style.scss";
+
+
+// Chrome applies an 8px margin by default (gross).
+body {
+    margin: 0px;
+}
+
+.popupContainer {
+    @include flex-column;
+    align-items    : center;
+    background     : $master-appstore;
+    font-size      : 10px;
+    height         : 15rem;
+    width          : 20rem;
+    justify-content: center;
+
+
+}
