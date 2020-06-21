@@ -2,7 +2,10 @@ import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { observer } from "mobx-react";
 import * as React from "react";
-import { useChromeListener } from "../../../utils/react/use-chrome";
+import {
+  useChromeListener,
+  useChromeStorage,
+} from "../../../utils/react/use-chrome";
 import * as styles from "./style.scss";
 import { ACTIONS } from "../../../models/frame-tester";
 import Switch from "../../components/Switch";
@@ -42,12 +45,15 @@ const theme = createMuiTheme({
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [active, setActive] = React.useState(true);
+  const [active, setActive] = React.useState(false);
   const chromeListener = useChromeListener();
+  const { item, itemLoaded, setItem } = useChromeStorage<boolean>(
+    ACTIONS.ACTIVE
+  );
 
   React.useEffect(() => {
-    sendActiveStatus(active);
-  }, []);
+    onActiveStatusChange(item, false);
+  }, [item]);
 
   const sendActiveStatus = React.useCallback(
     (status: boolean) => {
@@ -57,22 +63,34 @@ const App: React.FC<AppProps> = () => {
   );
 
   const onActiveStatusChange = React.useCallback(
-    (status: boolean) => {
+    async (status: boolean, updateStorage = true) => {
       setActive(status);
       sendActiveStatus(status);
+
+      if (updateStorage) {
+        await setItem(status);
+      }
     },
     [sendActiveStatus]
   );
 
   return (
     <MuiThemeProvider theme={theme}>
-      <div className={styles.popupContainer}>
-        <Typography variant='h3' className='flex-center t-center' gutterBottom>
-          Frame Tester
-        </Typography>
-        <br />
-        <Switch isActive={active} onChange={onActiveStatusChange} />
-      </div>
+      {itemLoaded ? (
+        <div className={styles.popupContainer}>
+          <Typography
+            variant='h3'
+            className='flex-center t-center'
+            gutterBottom
+          >
+            Frame Tester
+          </Typography>
+          <br />
+          <Switch isActive={active} onChange={onActiveStatusChange} />
+        </div>
+      ) : (
+        <span>loading...</span>
+      )}
     </MuiThemeProvider>
   );
 };

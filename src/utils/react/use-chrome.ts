@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 import { ChromeListener } from "../../models/chrome.model";
 
-export const useChromeStorage = <T = any>(key: string, { timeout = 5000 }) => {
+export const useChromeStorage = <T = any>(
+  key: string,
+  { timeout = 5000 } = { timeout: 5000 }
+) => {
   const [item, setItem] = useState<T>(null);
   const [itemLoaded, setItemLoaded] = useState(false);
   const storage = chrome.storage.sync;
