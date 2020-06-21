@@ -1,6 +1,7 @@
 import ChromeListener from "../utils/chrome.util";
 import { appendFrame } from './appendFrame';
 
+
 window.addEventListener("load", init, false);
 
 function init() {

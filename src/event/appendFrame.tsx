@@ -1,18 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import App from "./app/App";
 
 const rootId = `__frame-tester-root__`;
 
-const createRoot = () => {
-  const rootRef = document.createElement("div");
-  rootRef.setAttribute("id", rootId);
+export const appendFrame = () =>
+  ReactDOM.render(
+    <App />,
+    (() => {
+      const rootRef = document.createElement("div");
+      rootRef.setAttribute("id", rootId);
 
-  document.body.appendChild(rootRef);
+      document.body.insertBefore(rootRef, document.body.firstChild);
 
-  return rootRef;
-};
-
-export const appendFrame = () => ReactDOM.render(<App />, createRoot());
+      return rootRef;
+    })()
+  );
 export const removeFrame = () => document.getElementById(rootId).remove();
-

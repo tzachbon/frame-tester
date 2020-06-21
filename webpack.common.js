@@ -1,4 +1,5 @@
 const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     popup: path.join(__dirname, "src/popup/index.tsx"),
@@ -22,12 +23,17 @@ module.exports = {
         use: [
           {
             loader: "style-loader", // Creates style nodes from JS strings
+            options: {},
           },
           {
             loader: "css-loader", // Translates CSS into CommonJS
             options: {
-              importLoaders: 1,
+              esModule: true,
               modules: true,
+              localIdentName: "[name]_[local]_[hash:base64:5]",
+              importLoaders: 2,
+              camelCase: true,
+              sourceMap: false,
             },
           },
           {
