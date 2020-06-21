@@ -69,6 +69,7 @@ export default class ChromeListener<T = any, A = string> {
     const callback = this.getCallbackByAction(action);
     chrome.extension.onRequest.removeListener(callback);
     chrome.runtime.onMessage.removeListener(callback);
+    this.subscriptions.delete(action);
   }
 
   private getCallbackByAction(action: A) {
