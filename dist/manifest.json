@@ -1,8 +1,8 @@
 {
-  "name": "Chrome-Extention-Starter",
+  "name": "Frame Tester",
   "author": "Tzach Bonfil",
   "version": "1.0.0",
-  "description": "Full chrome extension stater! React,Typescript , MobX, Chrome Listener, Scss with styles, Web Worker, Material UI and many more...!",
+  "description": "This is a Frame tester extension, test your Web App by mocking popular frames",
   "icons": {
     "128": "icon128.png"
   },
