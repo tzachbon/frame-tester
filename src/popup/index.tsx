@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Popup from './containers/Popup/Popup';
+import App from './containers/App';
 
 chrome.tabs.query({ active: true, currentWindow: true }, tab => {
-    ReactDOM.render(<Popup />, document.getElementById('popup'));
+    ReactDOM.render(<App />, document.getElementById('popup'));
 });
 

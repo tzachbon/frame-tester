@@ -40,9 +40,8 @@ const theme = createMuiTheme({
 
 interface AppProps {}
 
-interface AppState {}
 
-const App: React.FC = (props: AppProps) => {
+const App: React.FC<AppProps> = () => {
   const [active, setActive] = React.useState(true);
   const chromeListener = useChromeListener();
 
