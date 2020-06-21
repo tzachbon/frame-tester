@@ -5,6 +5,7 @@ import * as React from "react";
 import { useChromeListener } from "../../../utils/react/use-chrome";
 import * as styles from "./style.scss";
 import { ACTIONS } from "../../../models/frame-tester";
+import Switch from "../../components/Switch";
 
 const theme = createMuiTheme({
   palette: {
@@ -40,7 +41,6 @@ const theme = createMuiTheme({
 
 interface AppProps {}
 
-
 const App: React.FC<AppProps> = () => {
   const [active, setActive] = React.useState(true);
   const chromeListener = useChromeListener();
@@ -49,26 +49,29 @@ const App: React.FC<AppProps> = () => {
     sendActiveStatus(active);
   }, []);
 
-  const sendActiveStatus = (status: boolean) => {
-    chromeListener.send(ACTIONS.ACTIVE, status);
-  };
+  const sendActiveStatus = React.useCallback(
+    (status: boolean) => {
+      chromeListener.send(ACTIONS.ACTIVE, status);
+    },
+    [chromeListener]
+  );
 
-  const onActiveStatusChange = () => {
-    const newActiveStatus = !active;
-    setActive(newActiveStatus);
-    sendActiveStatus(newActiveStatus);
-  };
+  const onActiveStatusChange = React.useCallback(
+    (status: boolean) => {
+      setActive(status);
+      sendActiveStatus(status);
+    },
+    [sendActiveStatus]
+  );
 
   return (
     <MuiThemeProvider theme={theme}>
       <div className={styles.popupContainer}>
         <Typography variant='h3' className='flex-center t-center' gutterBottom>
-          Hey adi
+          Frame Tester
         </Typography>
         <br />
-        <Button onClick={onActiveStatusChange}>
-          {active ? "Remove" : "Add"}
-        </Button>
+        <Switch isActive={active} onChange={onActiveStatusChange} />
       </div>
     </MuiThemeProvider>
   );
