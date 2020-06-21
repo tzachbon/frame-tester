@@ -23,10 +23,13 @@ const onRequest = <T>(action, callback: Callback<T>): OnRequest<T> => (
 };
 
 export default class ChromeListener<T = any, A = string> {
-  
-  private subscriptions = new Map<A, OnRequest<T>>();
+  private subscriptions = new Map<A, OnRequest<any>>();
 
-  on(action: A, callback: Callback<T>) {
+  static isChromeExtension() {
+    return !!window.location.href.includes("chrome-extension");
+  }
+
+  on<J = T>(action: A, callback: Callback<J>) {
     this.subscriptions.set(action, onRequest(action, callback));
     this.addSubscription(action);
 
@@ -39,10 +42,10 @@ export default class ChromeListener<T = any, A = string> {
     this.removeSubscription(action);
   }
 
-  send(action: A, payload: T) {
+  send<J = T>(action: A, payload: J) {
     const request = { action, payload };
 
-    try {
+    if (ChromeListener.isChromeExtension()) {
       chrome.tabs.query(
         { active: true, windowType: "normal", currentWindow: true },
         (tabArray) => {
@@ -51,7 +54,7 @@ export default class ChromeListener<T = any, A = string> {
           });
         }
       );
-    } catch (error) {
+    } else {
       chrome.extension.sendRequest(request);
     }
   }

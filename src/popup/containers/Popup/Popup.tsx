@@ -43,7 +43,7 @@ interface AppProps {}
 interface AppState {}
 
 const App: React.FC = (props: AppProps) => {
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = React.useState(true);
   const chromeListener = useChromeListener();
 
   React.useEffect(() => {

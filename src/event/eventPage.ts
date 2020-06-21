@@ -5,9 +5,9 @@ import { ACTIONS } from "../models/frame-tester";
 window.addEventListener("load", init, false);
 
 function init() {
-  const eventChromeListener = new ChromeListener<string>();
+  const eventChromeListener = new ChromeListener();
 
-  eventChromeListener.on(ACTIONS.ACTIVE, (isActive) => {
+  eventChromeListener.on<boolean>(ACTIONS.ACTIVE, (isActive) => {
     if (isActive) {
       appendFrame();
     } else {
