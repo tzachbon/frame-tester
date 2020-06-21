@@ -16,4 +16,7 @@ export const appendFrame = () =>
       return rootRef;
     })()
   );
-export const removeFrame = () => document.getElementById(rootId).remove();
+export const removeFrame = () => {
+  const ref = document.getElementById(rootId);
+  if (ref) ref.remove();
+};

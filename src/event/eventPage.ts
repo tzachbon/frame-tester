@@ -1,18 +1,17 @@
 import ChromeListener from "../utils/chrome.util";
-import { appendFrame } from './appendFrame';
-
+import { appendFrame, removeFrame } from "./appendFrame";
+import { ACTIONS } from "../models/frame-tester";
 
 window.addEventListener("load", init, false);
 
 function init() {
-
-  appendFrame();
-  
   const eventChromeListener = new ChromeListener<string>();
-  
-  eventChromeListener.on("test", (value) => {
-    console.log(value);
+
+  eventChromeListener.on(ACTIONS.ACTIVE, (isActive) => {
+    if (isActive) {
+      appendFrame();
+    } else {
+      removeFrame();
+    }
   });
 }
-
-

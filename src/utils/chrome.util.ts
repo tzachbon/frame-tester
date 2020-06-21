@@ -23,6 +23,7 @@ const onRequest = <T>(action, callback: Callback<T>): OnRequest<T> => (
 };
 
 export default class ChromeListener<T = any, A = string> {
+  
   private subscriptions = new Map<A, OnRequest<T>>();
 
   on(action: A, callback: Callback<T>) {

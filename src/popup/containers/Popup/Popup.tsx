@@ -3,7 +3,8 @@ import Typography from "@material-ui/core/Typography";
 import { observer } from "mobx-react";
 import * as React from "react";
 import { useChromeListener } from "../../../utils/react/use-chrome";
-import "./Popup.scss";
+import * as styles from "./style.scss";
+import { ACTIONS } from "../../../models/frame-tester";
 
 const theme = createMuiTheme({
   palette: {
@@ -42,28 +43,33 @@ interface AppProps {}
 interface AppState {}
 
 const App: React.FC = (props: AppProps) => {
+  const [active, setActive] = React.useState(false);
   const chromeListener = useChromeListener();
 
-  React.useEffect(
-    () =>
-      chromeListener.on("test", (test) => {
-        console.log(test);
-      }).remove,
-    []
-  );
+  React.useEffect(() => {
+    sendActiveStatus(active);
+  }, []);
 
-  const sendMessage = () => {
-    chromeListener.send("test", "this is a test!!!");
+  const sendActiveStatus = (status: boolean) => {
+    chromeListener.send(ACTIONS.ACTIVE, status);
+  };
+
+  const onActiveStatusChange = () => {
+    const newActiveStatus = !active;
+    setActive(newActiveStatus);
+    sendActiveStatus(newActiveStatus);
   };
 
   return (
     <MuiThemeProvider theme={theme}>
-      <div className='popupContainer'>
+      <div className={styles.popupContainer}>
         <Typography variant='h3' className='flex-center t-center' gutterBottom>
-          Hello World!
+          Hey adi
         </Typography>
         <br />
-        <Button onClick={sendMessage}>Click</Button>
+        <Button onClick={onActiveStatusChange}>
+          {active ? "Remove" : "Add"}
+        </Button>
       </div>
     </MuiThemeProvider>
   );
