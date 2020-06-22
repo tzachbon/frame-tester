@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChromeListener } from "../../models/chrome.model";
 
 export const useChromeStorage = <T = any>(

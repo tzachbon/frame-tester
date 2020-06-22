@@ -45,15 +45,8 @@ const theme = createMuiTheme({
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = React.useState(true);
   const chromeListener = useChromeListener();
-  const { item, itemLoaded, setItem } = useChromeStorage<boolean>(
-    ACTIONS.ACTIVE
-  );
-
-  React.useEffect(() => {
-    onActiveStatusChange(item, false);
-  }, [item]);
 
   const sendActiveStatus = React.useCallback(
     (status: boolean) => {
@@ -62,35 +55,21 @@ const App: React.FC<AppProps> = () => {
     [chromeListener]
   );
 
-  const onActiveStatusChange = React.useCallback(
-    async (status: boolean, updateStorage = true) => {
-      setActive(status);
-      sendActiveStatus(status);
-
-      if (updateStorage) {
-        await setItem(status);
-      }
-    },
-    [sendActiveStatus]
-  );
+  const onActiveStatusChange = React.useCallback(() => {
+    const status = !active;
+    setActive(status);
+    sendActiveStatus(status);
+  }, [sendActiveStatus, active]);
 
   return (
     <MuiThemeProvider theme={theme}>
-      {itemLoaded ? (
-        <div className={styles.popupContainer}>
-          <Typography
-            variant='h3'
-            className='flex-center t-center'
-            gutterBottom
-          >
-            Frame Tester
-          </Typography>
-          <br />
-          <Switch isActive={active} onChange={onActiveStatusChange} />
-        </div>
-      ) : (
-        <span>loading...</span>
-      )}
+      <div className={styles.popupContainer}>
+        <Typography variant='h3' className='flex-center t-center' gutterBottom>
+          Frame Tester
+        </Typography>
+        <br />
+        <Switch isActive={active} onChange={onActiveStatusChange} />
+      </div>
     </MuiThemeProvider>
   );
 };
