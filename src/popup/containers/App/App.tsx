@@ -48,18 +48,9 @@ const App: React.FC<AppProps> = () => {
   const [active, setActive] = React.useState(true);
   const chromeListener = useChromeListener();
 
-  const sendActiveStatus = React.useCallback(
-    (status: boolean) => {
-      chromeListener.send(ACTIONS.ACTIVE, status);
-    },
-    [chromeListener]
-  );
-
-  const onActiveStatusChange = React.useCallback(() => {
-    const status = !active;
-    setActive(status);
-    sendActiveStatus(status);
-  }, [sendActiveStatus, active]);
+  React.useEffect(() => {
+    chromeListener.send(ACTIONS.ACTIVE, status);
+  }, [active]);
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -68,10 +59,10 @@ const App: React.FC<AppProps> = () => {
           Frame Tester
         </Typography>
         <br />
-        <Switch isActive={active} onChange={onActiveStatusChange} />
+        <Switch isActive={active} onChange={setActive} />
       </div>
     </MuiThemeProvider>
   );
 };
 
-export default observer(App);
+export default App;
