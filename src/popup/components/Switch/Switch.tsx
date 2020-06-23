@@ -1,7 +1,6 @@
-import { Switch as SwitchUI } from "@material-ui/core";
+import { Switch as SwitchUI, Button } from "@material-ui/core";
 import * as React from "react";
-import { ACTIONS } from "../../../models/frame-tester";
-import { observer } from 'mobx-react';
+import { observer } from "mobx-react";
 
 interface SwitchProps {
   isActive: boolean;
@@ -9,12 +8,9 @@ interface SwitchProps {
 }
 
 const Switch: React.FC<SwitchProps> = ({ isActive, onChange }) => (
-  <SwitchUI
-    checked={isActive}
-    onChange={() => onChange(!isActive)}
-    name={ACTIONS.ACTIVE}
-    color='primary'
-  />
+  <Button onClick={() => onChange(!isActive)}>
+    {isActive ? "Disabled" : "Active"}
+  </Button>
 );
 
 export default observer(Switch);
