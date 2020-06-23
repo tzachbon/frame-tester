@@ -1,22 +1,22 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import App from "./app/App";
+import { getAppender } from "./../models/frame/appender";
+import { FRAMES_MAP } from "./../models/frame/frames";
+import { Frame } from "./../models/frame";
 
-const rootId = `__frame-tester-root__`;
+export const appendFrame = (frame: Frame, oldFrame: Frame) => {
+  if (oldFrame && oldFrame !== frame) removeFrame(oldFrame);
 
-export const appendFrame = () =>
-  ReactDOM.render(
-    <App />,
-    (() => {
-      const rootRef = document.createElement("div");
-      rootRef.setAttribute("id", rootId);
+  const appender = getAppender(document);
+  const appendFrame = appender[frame];
+  const frames = FRAMES_MAP[frame];
 
-      document.body.insertBefore(rootRef, document.body.firstChild);
+  appendFrame(frames);
+};
 
-      return rootRef;
-    })()
-  );
-export const removeFrame = () => {
-  const ref = document.getElementById(rootId);
-  if (ref) ref.remove();
+export const removeFrame = (frame: Frame) => {
+  const ids = FRAMES_MAP[frame].map(({ id }) => id);
+
+  for (const id of ids) {
+    const ref = document.getElementById(id);
+    if (ref) ref.remove();
+  }
 };
