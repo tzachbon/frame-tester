@@ -9,7 +9,10 @@
     "watch": "webpack -w --config webpack.dev.js",
     "lint": "tslint 'src/**/*.{ts, tsx}'"
   },
-  "author": "Tzach Bonfil",
+  "author": {
+    "name": "Tzach Bonfil",
+    "email": "tzachbonfil@gmail.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "0.0.60",

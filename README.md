@@ -1,8 +1,13 @@
-# Chrome Extension (built with TypeScript + React)
+# Frame Tester
 
-> This project is a boilerplate project to allow you to quickly build chrome extensions using TypeScript and React.
+Why guess what your app will look like in different frames?
+Frame Tester in unique Chrome Extension which mock popular frame (Like mobile Safari, facebook frame for IOS and more!).
 
-## Building
+## Add New Frame
+
+[Click here](ADDNEWFRAME.md) to see how to add new frame.
+
+## Developing
 
 1.  Clone repo
 2.  `npm i`
