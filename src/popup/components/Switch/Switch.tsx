@@ -1,6 +1,7 @@
 import { Switch as SwitchUI } from "@material-ui/core";
 import * as React from "react";
 import { ACTIONS } from "../../../models/frame-tester";
+import { observer } from 'mobx-react';
 
 interface SwitchProps {
   isActive: boolean;
@@ -16,4 +17,4 @@ const Switch: React.FC<SwitchProps> = ({ isActive, onChange }) => (
   />
 );
 
-export default Switch;
+export default observer(Switch);
