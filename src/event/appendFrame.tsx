@@ -10,7 +10,7 @@ export const appendFrame = () =>
     (() => {
       const rootRef = document.createElement("div");
       rootRef.setAttribute("id", rootId);
-
+      
       document.body.insertBefore(rootRef, document.body.firstChild);
 
       return rootRef;

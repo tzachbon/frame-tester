@@ -4,6 +4,8 @@ import { ACTIONS } from "../models/frame-tester";
 
 window.addEventListener("load", init, false);
 
+console.log(ChromeListener)
+
 function init() {
   const eventChromeListener = new ChromeListener();
 

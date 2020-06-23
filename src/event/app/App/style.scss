@@ -1,7 +1,38 @@
 .root {
-  position: fixed;
+
   width: 100vw;
-  height: 100vh;
-  z-index: 99999;
-  background: red;
+  z-index: 9999 !important;
+  
+  /* Safari Frame */
+
+  .safari-header-dark {
+    width: 100%;
+    background-color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+
+     .search-bar {
+      width: 90%;
+      position: relative;
+
+       input {
+        background-color: #888;
+        border-radius: 10px;
+        border: none;
+        padding: 10px 0;
+      }
+
+       .aA {
+        position: absolute;
+        left: 5px;
+      }
+       .refresh {
+        position: absolute;
+        right: 5px;
+        top: 4px;
+      }
+    }
+  }
 }

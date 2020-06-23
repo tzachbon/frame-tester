@@ -49,9 +49,9 @@ const App: React.FC<AppProps> = () => {
   const chromeListener = useChromeListener();
 
   React.useEffect(() => {
-    chromeListener.send(ACTIONS.ACTIVE, status);
+    chromeListener.send(ACTIONS.ACTIVE, active);
   }, [active]);
-
+  
   return (
     <MuiThemeProvider theme={theme}>
       <div className={styles.popupContainer}>
