@@ -14,8 +14,8 @@
   "devDependencies": {
     "@types/chrome": "0.0.60",
     "@types/node": "^12.12.14",
-    "@types/react": "^16.0.40",
-    "@types/react-dom": "^16.0.4",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
     "css-loader": "^0.28.11",
     "css-modules-typescript-loader": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -37,8 +37,8 @@
     "bad-words": "^3.0.3",
     "mobx": "^5.15.0",
     "mobx-react": "^6.1.4",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-switch": "^5.0.1"
   }
 }
