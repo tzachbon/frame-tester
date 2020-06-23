@@ -2,6 +2,9 @@ type ClassName = string | { [className: string]: boolean };
 
 export default function classNames(...classes: Array<ClassName>) {
     return classes.reduce<string>((pervious, current) => {
+
+        if (!current) return pervious;
+
         if (typeof current === 'object') {
             Object.keys(current).forEach((key: string) => {
                 const shouldAdd = current[key];
