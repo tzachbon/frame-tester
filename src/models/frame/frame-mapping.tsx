@@ -19,7 +19,7 @@ export const FRAMES_MAP: FramesMap = {
       componentEntry: <SafariTop />,
     },
     {
-      id: "safari_top",
+      id: "safari_bottom",
       componentEntry: <SafariBottom />,
     },
   ],

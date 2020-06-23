@@ -1,5 +1,5 @@
 import { getAppender } from "./../models/frame/appender";
-import { FRAMES_MAP } from "./../models/frame/frames";
+import { FRAMES_MAP } from "../models/frame/frame-mapping";
 import { Frame } from "./../models/frame";
 
 export const appendFrame = (frame: Frame, oldFrame: Frame) => {

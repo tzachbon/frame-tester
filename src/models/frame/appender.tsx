@@ -1,6 +1,6 @@
 import * as ReactDOM from "react-dom";
 import { FRAMES } from ".";
-import { FrameElement } from "./frames";
+import { FrameElement } from "./frame-mapping";
 
 const rootPrefix = `__frame-tester-root__`;
 

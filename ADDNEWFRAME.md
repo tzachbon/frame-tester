@@ -27,7 +27,7 @@ Please add it under this path: `src/event/app/{{frameName}}`.
 
 Mapping is the way that the appender will know which component to create and what ID it should add to them.
 
-[Click here](src/models/frame/frames.tsx) to go to the mapping file.
+[Click here](src/models/frame/frame-mapping.tsx) to go to the mapping file.
 Please add new entry with the enum you created in step 1 as key and an array of object which has id and componentEntry field. for example:
 
 ```tsx
