@@ -1,14 +1,10 @@
-import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import { observer } from "mobx-react";
 import * as React from "react";
-import {
-  useChromeListener,
-  useChromeStorage,
-} from "../../../utils/react/use-chrome";
-import * as styles from "./style.scss";
 import { ACTIONS } from "../../../models/frame-tester";
+import { useChromeListener } from "../../../utils/react/use-chrome";
 import Switch from "../../components/Switch";
+import * as styles from "./style.scss";
 
 const theme = createMuiTheme({
   palette: {
@@ -49,7 +45,7 @@ const App: React.FC<AppProps> = () => {
   const chromeListener = useChromeListener();
 
   React.useEffect(() => {
-    chromeListener.send(ACTIONS.ACTIVE, status);
+    chromeListener.send(ACTIONS.ACTIVE, active);
   }, [active]);
 
   return (

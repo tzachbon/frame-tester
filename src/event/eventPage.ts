@@ -6,8 +6,9 @@ window.addEventListener("load", init, false);
 
 function init() {
   const eventChromeListener = new ChromeListener();
-
+  
   eventChromeListener.on<boolean>(ACTIONS.ACTIVE, (isActive) => {
+
     if (isActive) {
       appendFrame();
     } else {
