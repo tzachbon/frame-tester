@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ACTIONS } from "../../../models/frame-tester";
 import { useChromeListener } from "../../../utils/react/use-chrome";
-import Switch from "../../components/Switch";
+import Switch from "./components/Switch";
 import * as styles from "./style.scss";
 import { observer } from 'mobx-react';
 
