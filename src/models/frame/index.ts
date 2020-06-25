@@ -2,6 +2,7 @@ import { ValuesType } from 'utility-types';
 
 export const ACTIONS = {
   ACTIVE: "ACTIVE",
+  FRAME: 'FRAME'
 };
 
 export const FRAMES = {
