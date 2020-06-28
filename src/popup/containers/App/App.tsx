@@ -1,33 +1,35 @@
-import * as React from "react";
-import { ACTIONS, FRAMES } from "../../../models/frame";
-import { useChromeListener } from "../../../utils/react/use-chrome";
-import Switch from "./components/Switch";
-import SearchBar from "./components/SearchBar";
-import * as styles from "./style.scss";
 import { observer } from "mobx-react";
+import * as React from "react";
+import { FRAMES } from "../../../models/frame";
+import { setFrame } from "../../../utils/manager/frame";
+import * as styles from "./style.scss";
 
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [isActive, setActive] = React.useState(true);
-  const [value, setValue] = React.useState('');
-  const chromeListener = useChromeListener();
+  const [currentFrame, setCurrentFrame] = React.useState<string>("safari");
 
-  React.useEffect(() => {
-    chromeListener.send(ACTIONS.ACTIVE, { isActive, frame: FRAMES.SAFARI });
-  }, [isActive]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const handleSubmit = () => {
+    if (
+      Object.values(FRAMES)
+        .map((frame) => frame.toLowerCase())
+        .includes(currentFrame.toLowerCase())
+    ) {
+      setFrame(currentFrame);
+    }
   };
+
+  const handleChange = ({ target: { value } }) => setCurrentFrame(value);
+
 
   return (
     <div className={styles.popupContainer}>
       <h1>Frame Tester</h1>
       <br />
-      <Switch isActive={isActive} onChange={setActive} />
-      <br />
-      <SearchBar value={value} onChange={handleChange} />
+      <div>
+        <input type='text' value={currentFrame} onChange={handleChange} />
+        <button onClick={handleSubmit}>Show</button>
+      </div>
     </div>
   );
 };

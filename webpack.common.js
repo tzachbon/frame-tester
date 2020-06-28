@@ -1,10 +1,8 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     popup: path.join(__dirname, "src/popup/index.tsx"),
-    eventPage: path.join(__dirname, "src/event/eventPage.ts"),
-    webWorker: path.join(__dirname, "src/utils/web-worker.ts"),
+    manager: path.join(__dirname, "src/manager/index.tsx"),
   },
   output: {
     path: path.join(__dirname, "dist/js"),

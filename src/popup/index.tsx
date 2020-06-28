@@ -3,6 +3,10 @@ import * as ReactDOM from "react-dom";
 import App from "./containers/App";
 
 chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-  console.log("test");
-  ReactDOM.render(<App />, document.getElementById("popup"));
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById("popup")
+  );
 });
