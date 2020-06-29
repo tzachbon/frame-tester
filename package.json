@@ -44,6 +44,7 @@
     "mobx-react": "^6.1.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-iframe": "^1.8.0",
     "react-switch": "^5.0.1",
     "utility-types": "^3.10.0"
   }

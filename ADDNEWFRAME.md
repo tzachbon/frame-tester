@@ -1,4 +1,6 @@
-# Add New Frame
+# New guide will be added soon
+
+<!-- # Add New Frame
 
 ## 1) Add new Enum
 
@@ -54,11 +56,11 @@ export const FRAMES_MAP: FramesMap = {
 ## 4) Get the components and create something with them
 
 This part has an appender which takes the user document and the relevant frames and creates something with it.
-The appender is a function that return an object. 
+The appender is a function that return an object.
 The object keys are the enum you created (In step 1) and the value is a function which gets the frame elements array (Which you created in step 3).
 The function should use the react dom to render the relevant frame element.
 
-For example: 
+For example:
 ```tsx
 export const getAppender = (document: Document) => ({
   ...,
@@ -86,4 +88,4 @@ export const getAppender = (document: Document) => ({
 });
 ```
 
-# And that it!
+# And that it! -->

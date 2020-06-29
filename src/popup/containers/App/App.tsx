@@ -7,7 +7,7 @@ import * as styles from "./style.scss";
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [currentFrame, setCurrentFrame] = React.useState<string>("safari");
+  const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
 
   const handleSubmit = () => {
     if (
@@ -23,13 +23,10 @@ const App: React.FC<AppProps> = () => {
 
   return (
     <div className={styles.popupContainer}>
-
-      <div className="background-dots-layer">
-      
-      </div>
+      <div className='background-dots-layer'></div>
       <h1>Frame Tester</h1>
       <br />
-      <div className="search-bar">
+      <div className='search-bar'>
         <input type='text' value={currentFrame} onChange={handleChange} />
         <button onClick={handleSubmit}>Show</button>
       </div>
