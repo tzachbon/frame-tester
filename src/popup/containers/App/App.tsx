@@ -12,7 +12,7 @@ import * as styles from './style.scss';
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [currentFrame, setCurrentFrame] = React.useState<string>('safari');
+  const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
 
   const handleSubmit = () => {
     if (
@@ -30,7 +30,7 @@ const App: React.FC<AppProps> = () => {
     <div className={styles.popupContainer}>
 
       <span className="background-dots-layer">
-        <img className="dot01" src="https://trello-attachments.s3.amazonaws.com/5ef0eb9c4a4a7d04cd321e52/5ef0eb9cd336b8198ad3e74a/3c08a9ae3691acb77960c5f8f61b1de3/white_dots01.svg" />
+        <img className={styles.dot01} src="https://trello-attachments.s3.amazonaws.com/5ef0eb9c4a4a7d04cd321e52/5ef0eb9cd336b8198ad3e74a/3c08a9ae3691acb77960c5f8f61b1de3/white_dots01.svg" />
         <img src="https://trello-attachments.s3.amazonaws.com/5ef0eb9c4a4a7d04cd321e52/5ef0eb9cd336b8198ad3e74a/1835e07e5e232050a62933d8d2644e1b/white_dots02-01.svg" />
         <img src="https://trello-attachments.s3.amazonaws.com/5ef0eb9c4a4a7d04cd321e52/5ef0eb9cd336b8198ad3e74a/d3e365e7cf68a76f0bb551ae99d6cc1b/white_dots03.svg" />
         <img src="https://trello-attachments.s3.amazonaws.com/5ef0eb9c4a4a7d04cd321e52/5ef0eb9cd336b8198ad3e74a/398ba0dc305abe04028ea3a95e5f01a3/white_dots04.svg" />
