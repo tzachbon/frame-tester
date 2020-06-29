@@ -28,6 +28,9 @@
     "default_icon": "icon48.png",
     "default_popup": "popup.html"
   },
+  "images": [
+
+  ],
   "web_accessible_resources": [],
   "content_scripts": [
     {

@@ -23,9 +23,13 @@ const App: React.FC<AppProps> = () => {
 
   return (
     <div className={styles.popupContainer}>
+
+      <div className="background-dots-layer">
+      
+      </div>
       <h1>Frame Tester</h1>
       <br />
-      <div>
+      <div className="search-bar">
         <input type='text' value={currentFrame} onChange={handleChange} />
         <button onClick={handleSubmit}>Show</button>
       </div>
