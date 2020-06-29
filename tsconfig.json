@@ -16,5 +16,6 @@
       "@utils/*": ["utils/*"],
       "@models/*": ["models/*"]
     }
-  }
+  },
+  "include": ["src/components", "src/index.d.ts"]
 }

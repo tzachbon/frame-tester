@@ -1,20 +1,63 @@
-@import "./../../../style.scss";
+@import './../../../style.scss';
 
 // Chrome applies an 8px margin by default (gross).
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
-// $bg-img: url('../../../assets/images/popup-background.jpg');
-
 .popupContainer {
-    @include flex-column;
-    align-items    : center;
-    background     : url("../../../assets/images/popup-background.png");
-    font-size      : 16px;
-    height         : 25rem;
-    width          : 40rem;
-    justify-content: center;
+  @include flex-column;
+  align-items: center;
+  background-image: url('https://trello-attachments.s3.amazonaws.com/5ef0eb9cd336b8198ad3e74a/1042x1667/9a8cff39896112733acc067d5573316e/background-01.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 10px;
+  height: 400px;
+  width: 250px;
+  justify-content: center;
+  position: relative;
 
+  h1 {
+    position: absolute;
+    top: 50px;
+    font-size: 3rem;
+    color: #fff;
+  }
 
+/* TOP LAYER */
+
+  div {
+    position: absolute;
+    top: 100px;
+    width: 80%;
+
+    input {
+        padding: 10px;
+        position: relative;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    button {
+        position: absolute;
+        padding: 10px;
+        right: 0;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: #dad8d8;
+        }
+    }
+  }
+
+  /* MIDDLE LAYER */
+
+  span {
+      width: 100%;
+      height: 100%;
+
+      .dot01 {
+          
+      }
+  }
 }
