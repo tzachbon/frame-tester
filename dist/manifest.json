@@ -32,7 +32,6 @@
   "web_accessible_resources": ["assets/images/popup-background.png"],
   "content_scripts": [
     {
-      "js": ["js/eventPage.js", "js/webWorker.js"],
       "matches": ["*://*/*"]
     }
   ]
