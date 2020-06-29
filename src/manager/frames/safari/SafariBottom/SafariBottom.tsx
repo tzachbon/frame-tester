@@ -1,11 +1,7 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SafariBottom = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default SafariBottom
+export default SafariBottom;

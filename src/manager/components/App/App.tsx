@@ -16,7 +16,7 @@ const App = () => {
 
   const { frame, url } = state;
 
-  const Frame = FRAMES_MAP[frame] as any;
+  const Frame = FRAMES_MAP[frame];
   const Iframe = getIframe(url);
 
   return <Frame frame={frame} url={url} Iframe={Iframe} />;
