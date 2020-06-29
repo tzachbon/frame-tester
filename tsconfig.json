@@ -12,5 +12,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "strict": false
-  }
+  },
+  "include": ["src/components", "src/index.d.ts"]
 }

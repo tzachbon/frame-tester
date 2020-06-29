@@ -28,10 +28,16 @@
     "default_icon": "icon48.png",
     "default_popup": "popup.html"
   },
-  "web_accessible_resources": [],
+  "images": [],
+  "web_accessible_resources": [
+    "assets/images/popup-background.png",
+    "assets/images/white_dots01.svg",
+    "assets/images/white_dots02-01.svg",
+    "assets/images/white_dots03.svg",
+    "assets/images/white_dots04.svg"
+     ],
   "content_scripts": [
     {
-      "js": ["js/eventPage.js", "js/webWorker.js"],
       "matches": ["*://*/*"]
     }
   ]

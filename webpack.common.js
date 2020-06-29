@@ -16,23 +16,12 @@ module.exports = {
         use: "ts-loader",
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jp(e*)g|svg|gif)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              name: 'css/images/[name].[ext]'
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              encoding: false,
+              name: 'images/[hash]-[name].[ext]',
             },
           },
         ],

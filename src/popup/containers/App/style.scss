@@ -3,12 +3,13 @@
 // Chrome applies an 8px margin by default (gross).
 body {
   margin: 0px;
+  overflow: hidden;
 }
 
 .popupContainer {
   @include flex-column;
   align-items: center;
-  background-image: url('https://trello-attachments.s3.amazonaws.com/5ef0eb9cd336b8198ad3e74a/1042x1667/9a8cff39896112733acc067d5573316e/background-01.png');
+  // background-image: url('https://trello-attachments.s3.amazonaws.com/5ef0eb9cd336b8198ad3e74a/1042x1667/9a8cff39896112733acc067d5573316e/background-01.png');
   background-repeat: no-repeat;
   background-size: cover;
   font-size: 10px;
@@ -16,7 +17,7 @@ body {
   width: 250px;
   justify-content: center;
   position: relative;
-
+  
   h1 {
     position: absolute;
     top: 50px;
@@ -52,12 +53,42 @@ body {
 
   /* MIDDLE LAYER */
 
-  span {
-      width: 100%;
-      height: 100%;
+  .bgDotsLayer {
+      width: 250px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      
 
-      .dot01 {
-          
+      .dotGroup01 {
+          position: absolute;
+          top: 12px;
+          left: 16px;
+
+          height: 30px;
+          width: 30px;
+      }
+      .dotGroup02 {
+          position: absolute;
+          top: 0;
+          right: -150px;
+
+          height: 420px;
+          width: 550px;
+      }
+      .dotGroup03 {
+          position: absolute;
+          bottom: 180px;
+          left: 35px;
+
+          width: 12px;
+      }
+      .dotGroup04 {
+          position: absolute;
+          bottom: 20px;
+          left: 15px;
+
+          width: 20px;
       }
   }
 }
