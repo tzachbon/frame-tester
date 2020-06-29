@@ -28,10 +28,8 @@
     "default_icon": "icon48.png",
     "default_popup": "popup.html"
   },
-  "images": [
-
-  ],
-  "web_accessible_resources": [],
+  "images": [],
+  "web_accessible_resources": ["assets/images/popup-background.png"],
   "content_scripts": [
     {
       "js": ["js/eventPage.js", "js/webWorker.js"],
