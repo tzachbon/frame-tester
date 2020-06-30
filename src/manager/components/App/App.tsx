@@ -2,14 +2,38 @@ import * as React from "react";
 import getIframe from "../../../utils/manager/get-iframe";
 import { ACTIONS, SetFramePayload } from "../../../models/frame";
 import { FRAMES_MAP } from "../../../models/frame/frame-mapping";
+import {
+  getFrameFromStorage,
+  listenToFrameChange,
+  isChromeExtension,
+} from "./utils";
 
 const App = () => {
   const [state, setState] = React.useState<SetFramePayload | null>(null);
 
   React.useEffect(() => {
-    chrome.storage.sync.get((items) => {
-      setState(items[ACTIONS.FRAME]);
+    let mount = true;
+    getFrameFromStorage(
+      ACTIONS.FRAME,
+      (item: SetFramePayload) => mount && setState(item)
+    );
+    listenToFrameChange(ACTIONS.FRAME, (item: SetFramePayload) => {
+      if (!mount || !item) return;
+
+      setState((currentState) => {
+        const { url } = item;
+
+        if (isChromeExtension(url) && currentState?.url) {
+          item.url = currentState.url;
+        }
+
+        return item;
+      });
     });
+
+    return () => {
+      mount = false;
+    };
   }, []);
 
   if (!state) return <h1>loading...</h1>;

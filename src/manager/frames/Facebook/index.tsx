@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FrameProps } from "../../../models/frame";
 
-const Safari: React.FC<FrameProps> = ({ url, Iframe, frame }) => {
+const Facebook: React.FC<FrameProps> = ({ url, Iframe, frame }) => {
   return (
     <div>
       <h1>{frame}</h1>
@@ -10,4 +10,4 @@ const Safari: React.FC<FrameProps> = ({ url, Iframe, frame }) => {
   );
 };
 
-export default Safari;
+export default Facebook;
