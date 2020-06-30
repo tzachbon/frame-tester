@@ -20,6 +20,8 @@ const App: React.FC<AppProps> = () => {
         .includes(currentFrame.toLowerCase())
     ) {
       setFrame(currentFrame);
+    } else {
+      alert('Frame not found')
     }
   };
 
