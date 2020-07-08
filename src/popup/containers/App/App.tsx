@@ -1,68 +1,46 @@
-import { Button, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
 import { observer } from "mobx-react";
 import * as React from "react";
-import {
-  useChromeListener,
-  useChromeStorage,
-} from "../../../utils/react/use-chrome";
+import { FRAMES } from "../../../models/frame";
+import { setFrame } from "../../../utils/manager/frame";
 import * as styles from "./style.scss";
-import { ACTIONS } from "../../../models/frame-tester";
-import Switch from "../../components/Switch";
 
-const theme = createMuiTheme({
-  palette: {
-    type: "dark",
-    grey: {
-      800: "#000000", // overrides failed
-      900: "#121212", // overrides success
-    },
-    background: {
-      paper: "#000000",
-    },
-    primary: {
-      light: "#fff",
-      main: "#09d3ac",
-      dark: "#eee",
-      contrastText: "#eee",
-    },
-    secondary: {
-      main: "#40739e",
-      dark: "#eee",
-      light: "#fff",
-      contrastText: "#eee",
-    },
-  },
-  typography: {
-    fontFamily: "Nunito Sans, Roboto, sans-serif",
-    fontSize: 20,
-    allVariants: {
-      color: "#eee",
-    },
-  },
-});
+const getBackgroundImage = () =>
+  chrome.extension.getURL("assets/images/popup-background.png");
 
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [active, setActive] = React.useState(true);
-  const chromeListener = useChromeListener();
+  const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
+  const bgImage = React.useMemo(() => getBackgroundImage(), []);
 
-  React.useEffect(() => {
-    chromeListener.send(ACTIONS.ACTIVE, active);
-  }, [active]);
-  
+  const handleSubmit = () => {
+    if (
+      Object.values(FRAMES)
+        .map((frame) => frame.toLowerCase())
+        .includes(currentFrame.toLowerCase())
+    ) {
+      setFrame(currentFrame);
+    } else {
+      alert('Frame not found')
+    }
+  };
+
+  const handleChange = ({ target: { value } }) => setCurrentFrame(value);
+
   return (
-    <MuiThemeProvider theme={theme}>
-      <div className={styles.popupContainer}>
-        <Typography variant='h3' className='flex-center t-center' gutterBottom>
-          Frame Tester
-        </Typography>
-        <br />
-        <Switch isActive={active} onChange={setActive} />
+    <div
+      className={styles.popupContainer}
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <div className='background-dots-layer'></div>
+      <h1>Frame Tester</h1>
+      <br />
+      <div className='search-bar'>
+        <input type='text' value={currentFrame} onChange={handleChange} />
+        <button onClick={handleSubmit}>Show</button>
       </div>
-    </MuiThemeProvider>
+    </div>
   );
 };
 
-export default App;
+export default observer(App);

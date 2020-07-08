@@ -1,8 +1,12 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './containers/App';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import App from "./containers/App";
 
-chrome.tabs.query({ active: true, currentWindow: true }, tab => {
-    ReactDOM.render(<App />, document.getElementById('popup'));
+chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById("popup")
+  );
 });
-

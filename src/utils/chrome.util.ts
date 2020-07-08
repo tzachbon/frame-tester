@@ -1,4 +1,3 @@
-import { Chrome } from "../models/chrome.model";
 
 type Callback<T> = (
   value: T,
@@ -7,13 +6,13 @@ type Callback<T> = (
 ) => any;
 
 type OnRequest<T> = (
-  req: Chrome.Request<T>,
+  req: any,
   sender: chrome.runtime.MessageSender,
   cb: Function
 ) => any;
 
 const onRequest = <T>(action, callback: Callback<T>): OnRequest<T> => (
-  { payload: extra, action: reqAction }: Chrome.Request<T>,
+  { payload: extra, action: reqAction }: any,
   sender: chrome.runtime.MessageSender,
   cb: Function
 ) => {
