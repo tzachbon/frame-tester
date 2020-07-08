@@ -1,6 +1,6 @@
 import ChromeListener from "../utils/chrome.util";
 import { appendFrame, removeFrame } from "./appendFrame";
-import { ACTIONS } from "../models/frame-tester";
+// import { ACTIONS } from "../models/frame-tester";
 
 window.addEventListener("load", init, false);
 
