@@ -1,5 +1,4 @@
 import * as React from "react";
-import getIframe from "../../../utils/manager/get-iframe";
 import { ACTIONS, SetFramePayload } from "../../../models/frame";
 import { FRAMES_MAP } from "../../../models/frame/frame-mapping";
 import {
@@ -7,6 +6,7 @@ import {
   listenToFrameChange,
   isChromeExtension,
 } from "./utils";
+import { getIframe } from '../Iframe/get-iframe';
 
 const App = () => {
   const [state, setState] = React.useState<SetFramePayload | null>(null);
