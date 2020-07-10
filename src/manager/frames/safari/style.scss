@@ -1,0 +1,56 @@
+@import '../../../style.scss';
+
+.safariTop {
+    @include flex-center;
+    background-color: $grey-light;
+    height: 80px;
+    width: 100%;
+  
+    div {
+        position: relative;
+        width: 90%;
+    }
+
+    input {
+        @include border-radius(10px);
+        background-color: lighten($grey-light, 40);
+        width: 100%;
+        padding: 15px;
+        
+    }
+
+    .aA {
+        width: 40px;
+        position: absolute;
+        top: 8px;
+        left: 10px;
+    }
+    .reload {
+        width: 25px;
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        
+    }
+
+    h2 {
+        position: absolute;
+        top: 10px;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+    }
+}
+
+.safariBottom {
+    @include display-flex;
+    justify-content: space-around;
+    background-color: $grey-light;
+    height: 80px;
+    width: 100%;
+
+    img {
+        width: 30px;
+    }
+}
+
