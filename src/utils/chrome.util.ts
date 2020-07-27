@@ -33,7 +33,7 @@ export default class ChromeListener<T = any, A = string> {
     this.addSubscription(action);
 
     return {
-      remove: this.remove.bind(this, action),
+      remove: () => this.remove(action),
     };
   }
 
