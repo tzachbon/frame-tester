@@ -11,7 +11,7 @@ interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
   const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
-  const bgImage = React.useMemo(() => getBackgroundImage(), []);
+  const bgImage = getBackgroundImage()
 
   const handleSubmit = () => {
     if (
