@@ -1,11 +1,15 @@
 import * as React from "react";
+import * as styles from './style.scss';
 import { FrameProps } from "../../../models/frame";
+import  SafariTop  from "./SafariTop/index";
+import  SafariBottom  from "./SafariBottom/index";
 
 const Safari: React.FC<FrameProps> = ({ url, Iframe, frame }) => {
   return (
-    <div>
-      <h1>{frame}</h1>
-      <Iframe />
+    <div className={styles.root}>
+      <SafariTop />
+      <Iframe className={styles.Iframe} />
+      <SafariBottom />
     </div>
   );
 };
