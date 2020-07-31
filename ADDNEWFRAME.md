@@ -87,9 +87,3 @@ export const getAppender = (document: Document) => ({
   ...,
 });
 ```
-
-<<<<<<< HEAD
-# And that's it!
-=======
-# And that it! -->
->>>>>>> d97cb60c93cd566cd14a22f27d27a4aae98aab42
