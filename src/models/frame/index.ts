@@ -19,19 +19,27 @@ export interface SetFramePayload {
 
 export type Frame = ValuesType<typeof FRAMES>;
 
-export interface FrameProps<T = string> {
+export interface FrameProps {
   Iframe: ComponentType<Omit<IIframe, "url">>;
-  state: T;
+  state: FramesStates;
   frame: string;
   url: string;
 }
 
+export interface FramesStates {
+  id: string;
+  name?: string;
+  description?: string;
+}
+
+export interface MappedFrame {
+  component: ComponentType<FrameProps>;
+  name: string;
+  states?: FramesStates[];
+  description?: string;
+  icon?: string;
+}
+
 export interface FramesMap {
-  [key: string]: {
-    component: ComponentType<FrameProps>;
-    name: string;
-    states?: Record<string, string>;
-    description?: string;
-    icon?: string;
-  };
+  [key: string]: MappedFrame;
 }
