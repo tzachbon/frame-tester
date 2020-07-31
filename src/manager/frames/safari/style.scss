@@ -1,66 +1,62 @@
-@import '../../../style.scss';
-
+@import "../../../style.scss";
 
 .root {
-    @include flex-column;
-    height: 100vh;
-    .Iframe {
-        flex: 1;
-    }
+  @include flex-column;
+  height: 100vh;
+  .Iframe {
+    flex: 1;
+  }
 }
 
-
 .safariTop {
-    @include flex-center;
-    background-color: $grey-light;
-    height: 80px;
-    width: 100%;
-  
-    div {
-        position: relative;
-        width: 90%;
-    }
+  @include flex-center;
+  background-color: $grey-light;
+  height: 70px;
+  width: 100%;
 
-    input {
-        @include border-radius(10px);
-        background-color: lighten($grey-light, 40);
-        width: 100%;
-        padding: 15px;
-        
-    }
+  &-container {
+    position: relative;
+    width: 92%;
+    @include border-radius(15px);
+    background-color: lighten($grey-light, 40);
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-    .aA {
-        width: 40px;
-        position: absolute;
-        top: 8px;
-        left: 10px;
-    }
-    .reload {
-        width: 25px;
-        position: absolute;
-        top: 8px;
-        right: 10px;
-        
-    }
+  .textIcon {
+    width: 40px;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+  }
+  .reloadIcon {
+    width: 25px;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+  }
 
-    h2 {
-        position: absolute;
-        top: 10px;
-        width: 100%;
-        text-align: center;
-        color: #fff;
-    }
+  h2 {
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 70%;
+    text-overflow: ellipsis;
+    color: #fff;
+  }
 }
 
 .safariBottom {
-    @include display-flex;
-    justify-content: space-around;
-    background-color: $grey-light;
-    height: 80px;
-    width: 100%;
+  @include display-flex;
+  justify-content: space-around;
+  background-color: $grey-light;
+  height: 55px;
+  width: 100%;
 
-    img {
-        width: 30px;
-    }
+  img {
+    width: 30px;
+  }
 }
-
