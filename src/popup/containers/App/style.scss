@@ -3,6 +3,7 @@
 // Chrome applies an 8px margin by default (gross).
 body {
   margin: 0px;
+  overflow: hidden;
 }
 
 .popupContainer {
@@ -16,13 +17,15 @@ body {
   width: 250px;
   justify-content: center;
   position: relative;
-
+  
   h1 {
     position: absolute;
     top: 50px;
     font-size: 3rem;
     color: #fff;
   }
+
+/* TOP LAYER */
 
   div {
     position: absolute;
@@ -43,8 +46,49 @@ body {
         border-radius: 10px;
 
         &:hover {
-            background-color: rgb(223, 219, 219);
+            background-color: #dad8d8;
         }
     }
+  }
+
+  /* MIDDLE LAYER */
+
+  .bgDotsLayer {
+      width: 250px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      
+
+      .dotGroup01 {
+          position: absolute;
+          top: 12px;
+          left: 16px;
+
+          height: 30px;
+          width: 30px;
+      }
+      .dotGroup02 {
+          position: absolute;
+          top: 0;
+          right: -150px;
+
+          height: 420px;
+          width: 550px;
+      }
+      .dotGroup03 {
+          position: absolute;
+          bottom: 180px;
+          left: 35px;
+
+          width: 12px;
+      }
+      .dotGroup04 {
+          position: absolute;
+          bottom: 20px;
+          left: 15px;
+
+          width: 20px;
+      }
   }
 }

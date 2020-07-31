@@ -5,13 +5,22 @@ import { setFrame } from "../../../utils/manager/frame";
 import * as styles from "./style.scss";
 
 const getBackgroundImage = () =>
-  chrome.extension.getURL("assets/images/popup-background.png");
+  chrome.extension.getURL("assets/images/popup-background.png") as string;
+
+const getDotsImages = () => {
+  const dots = [];
+  for (let i = 0; i++, i < 5; ) {
+    dots.push(chrome.extension.getURL(`assets/images/white_dots0${i}.svg`));
+  }
+  return dots;
+};
 
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
   const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
-  const bgImage = getBackgroundImage()
+  const bgImage = getBackgroundImage();
+  const dotImages = getDotsImages();
 
   const handleSubmit = () => {
     if (
@@ -21,7 +30,7 @@ const App: React.FC<AppProps> = () => {
     ) {
       setFrame(currentFrame);
     } else {
-      alert('Frame not found')
+      alert("Frame not found");
     }
   };
 
@@ -32,7 +41,14 @@ const App: React.FC<AppProps> = () => {
       className={styles.popupContainer}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className='background-dots-layer'></div>
+      <div className={styles.bgDotsLayer}>
+        {/* {dotImages.map((image, idx) => <img className={styles.dotGroup01} src={image}  />)} */}
+        <img className={styles.dotGroup01} src={dotImages[0]} />
+        <img className={styles.dotGroup02} src={dotImages[1]} />
+        <img className={styles.dotGroup03} src={dotImages[2]} />
+        <img className={styles.dotGroup04} src={dotImages[3]} />
+      </div>
+
       <h1>Frame Tester</h1>
       <br />
       <div className='search-bar'>

@@ -9,13 +9,14 @@ const windows = chrome.extension.getURL("assets/safariFrame/windows.svg");
 
 const SafariBottom = () => {
   return (
-  <div className={styles.safariBottom}>
-    <img src={Return} />
-    <img src={next} />
-    <img src={upload} />
-    <img src={book} />
-    <img src={windows} />
-  </div>
-)};
+    <div className={styles.safariBottom}>
+      <img src={Return} />
+      <img src={next} />
+      <img src={upload} />
+      <img src={book} />
+      <img src={windows} />
+    </div>
+  );
+};
 
 export default SafariBottom;

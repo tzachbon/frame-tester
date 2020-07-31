@@ -87,5 +87,3 @@ export const getAppender = (document: Document) => ({
   ...,
 });
 ```
-
-# And that it! -->
