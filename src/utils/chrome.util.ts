@@ -1,3 +1,4 @@
+import { ChromeActions } from './chrome.actions';
 
 type Callback<T> = (
   value: T,
@@ -5,13 +6,13 @@ type Callback<T> = (
   callback: Function
 ) => any;
 
-type OnRequest<T> = (
+type OnRequest = (
   req: any,
   sender: chrome.runtime.MessageSender,
   cb: Function
 ) => any;
 
-const onRequest = <T>(action, callback: Callback<T>): OnRequest<T> => (
+const onRequest = <T,A = ChromeActions>(action: A, callback: Callback<T>): OnRequest => (
   { payload: extra, action: reqAction }: any,
   sender: chrome.runtime.MessageSender,
   cb: Function
@@ -21,8 +22,8 @@ const onRequest = <T>(action, callback: Callback<T>): OnRequest<T> => (
   }
 };
 
-export default class ChromeListener<T = any, A = string> {
-  private subscriptions = new Map<A, OnRequest<any>>();
+export default class ChromeListener<T = any, A = ChromeActions> {
+  private subscriptions = new Map<A, OnRequest>();
 
   static isChromeExtension() {
     return !!window.location.href.includes("chrome-extension");
@@ -42,9 +43,10 @@ export default class ChromeListener<T = any, A = string> {
   }
 
   send<J = T>(action: A, payload: J) {
-    const request = { action, payload };
+    const id = chrome.runtime.id;
+    const request = { action, payload, id };
 
-    if (ChromeListener.isChromeExtension()) {
+    if (!ChromeListener.isChromeExtension()) {
       chrome.tabs.query(
         { active: true, windowType: "normal", currentWindow: true },
         (tabArray) => {

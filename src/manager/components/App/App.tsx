@@ -6,30 +6,59 @@ import {
   listenToFrameChange,
   isChromeExtension,
 } from "./utils";
-import { getIframe } from '../Iframe/get-iframe';
+import { getIframe } from "../Iframe/get-iframe";
+import ChromeListener from "../../../utils/chrome.util";
+import { ChromeActions } from "../../../utils/chrome.actions";
 
 const App = () => {
   const [state, setState] = React.useState<SetFramePayload | null>(null);
+  const [frameState, setFrameState] = React.useState(null);
+  const { current: chromeListener } = React.useRef(new ChromeListener());
 
-  React.useEffect(() => {
-    let mount = true;
+  const onListenToFrameChange = React.useCallback(
+    (mount: boolean) =>
+      listenToFrameChange(ACTIONS.FRAME, (item: SetFramePayload) => {
+        if (!mount || !item) return;
+
+        setState((currentState) => {
+          const { url } = item;
+
+          if (isChromeExtension(url) && currentState?.url) {
+            item.url = currentState.url;
+          }
+
+          return item;
+        });
+      }),
+    []
+  );
+
+  const onGetFrameFromStorage = React.useCallback((mount: boolean) => {
     getFrameFromStorage(
       ACTIONS.FRAME,
       (item: SetFramePayload) => mount && setState(item)
     );
-    listenToFrameChange(ACTIONS.FRAME, (item: SetFramePayload) => {
-      if (!mount || !item) return;
+  }, []);
 
-      setState((currentState) => {
-        const { url } = item;
-
-        if (isChromeExtension(url) && currentState?.url) {
-          item.url = currentState.url;
+  const onGetFrameState = React.useCallback(
+    (mount: boolean) => {
+      chromeListener.on(ChromeActions.FRAME_STATE, (...args) => {
+        if (!mount) {
+          return;
         }
 
-        return item;
+        alert(args[0])
       });
-    });
+    },
+    [chromeListener]
+  );
+
+  React.useEffect(() => {
+    let mount = true;
+
+    onGetFrameFromStorage(mount);
+    onListenToFrameChange(mount);
+    onGetFrameState(mount);
 
     return () => {
       mount = false;
@@ -43,7 +72,7 @@ const App = () => {
   const Frame = FRAMES_MAP[frame];
   const Iframe = getIframe(url);
 
-  return <Frame frame={frame} url={url} Iframe={Iframe} />;
+  return <Frame frame={frame} url={url} Iframe={Iframe} state={frameState} />;
 };
 
 export default App;

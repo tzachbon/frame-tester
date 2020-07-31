@@ -3,6 +3,8 @@ import * as React from "react";
 import { FRAMES } from "../../../models/frame";
 import { setFrame } from "../../../utils/manager/frame";
 import * as styles from "./style.scss";
+import ChromeListener from "../../../utils/chrome.util";
+import { ChromeActions } from "../../../utils/chrome.actions";
 
 const getBackgroundImage = () =>
   chrome.extension.getURL("assets/images/popup-background.png") as string;
@@ -19,8 +21,8 @@ interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
   const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
+  const { current: chromeListener } = React.useRef(new ChromeListener());
   const bgImage = getBackgroundImage();
-  const dotImages = getDotsImages();
 
   const handleSubmit = () => {
     if (
@@ -35,26 +37,24 @@ const App: React.FC<AppProps> = () => {
   };
 
   const handleChange = ({ target: { value } }) => setCurrentFrame(value);
+  const handleFrameStateUpdate = () => {
+    chromeListener.send(ChromeActions.FRAME_STATE, "state");
+  };
 
   return (
     <div
       className={styles.popupContainer}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className={styles.bgDotsLayer}>
-        {/* {dotImages.map((image, idx) => <img className={styles.dotGroup01} src={image}  />)} */}
-        <img className={styles.dotGroup01} src={dotImages[0]} />
-        <img className={styles.dotGroup02} src={dotImages[1]} />
-        <img className={styles.dotGroup03} src={dotImages[2]} />
-        <img className={styles.dotGroup04} src={dotImages[3]} />
-      </div>
-
       <h1>Frame Tester</h1>
       <br />
       <div className='search-bar'>
         <input type='text' value={currentFrame} onChange={handleChange} />
         <button onClick={handleSubmit}>Show</button>
       </div>
+
+      <button onClick={handleFrameStateUpdate}>Update State</button>
+
     </div>
   );
 };

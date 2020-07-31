@@ -19,8 +19,9 @@ export interface SetFramePayload {
 
 export type Frame = ValuesType<typeof FRAMES>;
 
-export interface FrameProps {
+export interface FrameProps<T = string> {
   Iframe: ComponentType<Omit<IIframe, "url">>;
+  state: T
   frame: string;
   url: string;
 }

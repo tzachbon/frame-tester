@@ -3,8 +3,11 @@ import * as styles from "./style.scss";
 import { FrameProps } from "../../../models/frame";
 import SafariTop from "./SafariTop/index";
 import SafariBottom from "./SafariBottom/index";
+import { SafariState } from './types';
 
-const Safari: React.FC<FrameProps> = ({ url, Iframe, frame }) => {
+const Safari: React.FC<FrameProps<SafariState>> = ({ url, Iframe, state }) => {
+  console.log(state);
+  
   return (
     <div className={styles.root}>
       <SafariTop url={url} />
