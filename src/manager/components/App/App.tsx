@@ -12,7 +12,7 @@ import { ChromeActions } from "../../../utils/chrome.actions";
 
 const App = () => {
   const [state, setState] = React.useState<SetFramePayload | null>(null);
-  const [frameState, setFrameState] = React.useState(null);
+  const [frameState, setFrameState] = React.useState<any>(null);
   const { current: chromeListener } = React.useRef(new ChromeListener());
 
   const onListenToFrameChange = React.useCallback(
@@ -47,7 +47,7 @@ const App = () => {
           return;
         }
 
-        alert(args[0])
+        alert(args[0]);
       });
     },
     [chromeListener]
@@ -69,7 +69,7 @@ const App = () => {
 
   const { frame, url } = state;
 
-  const Frame = FRAMES_MAP[frame];
+  const { component: Frame } = FRAMES_MAP[frame];
   const Iframe = getIframe(url);
 
   return <Frame frame={frame} url={url} Iframe={Iframe} state={frameState} />;

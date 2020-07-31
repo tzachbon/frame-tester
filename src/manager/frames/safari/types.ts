@@ -1,5 +1,4 @@
-
-export const enum SafariState {
-  DEFAULT = 'DEFAULT',
-  SCROLLED = 'SCROLLED'
-}
+export const SafariState = {
+  DEFAULT: "DEFAULT",
+  SCROLLED: "SCROLLED",
+};

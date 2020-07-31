@@ -5,7 +5,7 @@ import SafariTop from "./SafariTop/index";
 import SafariBottom from "./SafariBottom/index";
 import { SafariState } from './types';
 
-const Safari: React.FC<FrameProps<SafariState>> = ({ url, Iframe, state }) => {
+const Safari: React.FC<FrameProps<keyof typeof SafariState>> = ({ url, Iframe, state }) => {
   console.log(state);
   
   return (

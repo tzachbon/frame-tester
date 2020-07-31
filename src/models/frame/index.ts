@@ -9,7 +9,7 @@ export const ACTIONS = {
 
 export const FRAMES = {
   SAFARI: "Safari",
-  FACEBOOK: "Facebook"
+  FACEBOOK: "Facebook",
 };
 
 export interface SetFramePayload {
@@ -21,11 +21,17 @@ export type Frame = ValuesType<typeof FRAMES>;
 
 export interface FrameProps<T = string> {
   Iframe: ComponentType<Omit<IIframe, "url">>;
-  state: T
+  state: T;
   frame: string;
   url: string;
 }
 
 export interface FramesMap {
-  [key: string]: ComponentType<FrameProps>;
+  [key: string]: {
+    component: ComponentType<FrameProps>;
+    name: string;
+    states?: Record<string, string>;
+    description?: string;
+    icon?: string;
+  };
 }
