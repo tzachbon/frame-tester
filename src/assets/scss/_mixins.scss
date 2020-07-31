@@ -504,9 +504,6 @@
 	@include transform(translate(-50%, -50%));
 }
 
-@mixin overflowHiddenMask {
-	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-}
 
 @mixin unslectable {
 	-webkit-touch-callout: none;
