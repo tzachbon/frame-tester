@@ -1,0 +1,62 @@
+@import "../../../style.scss";
+
+.root {
+  @include flex-column;
+  height: 100vh;
+  .Iframe {
+    flex: 1;
+  }
+}
+
+.safariTop {
+  @include flex-center;
+  background-color: $grey-light;
+  height: 70px;
+  width: 100%;
+
+  &-container {
+    position: relative;
+    width: 92%;
+    @include border-radius(15px);
+    background-color: lighten($grey-light, 40);
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .textIcon {
+    width: 40px;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+  }
+  .reloadIcon {
+    width: 25px;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+  }
+
+  h2 {
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 70%;
+    text-overflow: ellipsis;
+    color: #fff;
+  }
+}
+
+.safariBottom {
+  @include display-flex;
+  justify-content: space-around;
+  background-color: $grey-light;
+  height: 55px;
+  width: 100%;
+
+  img {
+    width: 30px;
+  }
+}

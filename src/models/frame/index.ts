@@ -9,6 +9,7 @@ export const ACTIONS = {
 
 export const FRAMES = {
   SAFARI: "Safari",
+  FACEBOOK: "Facebook"
 };
 
 export interface SetFramePayload {

@@ -35,10 +35,6 @@
     "assets/images/white_dots02-01.svg",
     "assets/images/white_dots03.svg",
     "assets/images/white_dots04.svg"
-     ],
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"]
-    }
-  ]
+  ],
+  "content_scripts": []
 }
