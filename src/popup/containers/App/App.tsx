@@ -1,10 +1,11 @@
 import { observer } from "mobx-react";
 import * as React from "react";
-import { FRAMES } from "../../../models/frame";
+import { Frame } from "../../../models/frame";
+import { FRAMES_MAP } from "../../../models/frame/frame-mapping";
+import { ChromeActions } from "../../../utils/chrome.actions";
+import ChromeListener from "../../../utils/chrome.util";
 import { setFrame } from "../../../utils/manager/frame";
 import * as styles from "./style.scss";
-import ChromeListener from "../../../utils/chrome.util";
-import { ChromeActions } from "../../../utils/chrome.actions";
 
 const getBackgroundImage = () =>
   chrome.extension.getURL("assets/images/popup-background.png") as string;
@@ -20,23 +21,24 @@ const getDotsImages = () => {
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
-  const [currentFrame, setCurrentFrame] = React.useState<string>(FRAMES.SAFARI);
+  const [inputValue, setInputValue] = React.useState("");
   const { current: chromeListener } = React.useRef(new ChromeListener());
   const bgImage = getBackgroundImage();
+  const dotImages = getDotsImages();
 
   const handleSubmit = () => {
-    if (
-      Object.values(FRAMES)
-        .map((frame) => frame.toLowerCase())
-        .includes(currentFrame.toLowerCase())
-    ) {
-      setFrame(currentFrame);
+    const frame = Object.entries(FRAMES_MAP).find(([, mappedFrame]) =>
+      mappedFrame.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    if (frame) {
+      const [frameId] = frame;
+      setFrame(frameId as Frame);
     } else {
       alert("Frame not found");
     }
   };
 
-  const handleChange = ({ target: { value } }) => setCurrentFrame(value);
+  const handleChange = ({ target: { value } }) => setInputValue(value);
   const handleFrameStateUpdate = () => {
     chromeListener.send(ChromeActions.FRAME_STATE, "state");
   };
@@ -49,12 +51,11 @@ const App: React.FC<AppProps> = () => {
       <h1>Frame Tester</h1>
       <br />
       <div className='search-bar'>
-        <input type='text' value={currentFrame} onChange={handleChange} />
+        <input type='text' value={inputValue} onChange={handleChange} />
         <button onClick={handleSubmit}>Show</button>
       </div>
 
       <button onClick={handleFrameStateUpdate}>Update State</button>
-
     </div>
   );
 };

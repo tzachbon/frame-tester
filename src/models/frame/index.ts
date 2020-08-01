@@ -7,17 +7,17 @@ export const ACTIONS = {
   FRAME: "FRAME",
 };
 
-export const FRAMES = {
-  SAFARI: "Safari",
-  FACEBOOK: "Facebook",
-};
+export enum FRAMES {
+  SAFARI = "Safari",
+  FACEBOOK = "Facebook",
+}
 
 export interface SetFramePayload {
   url: string;
   frame: Frame;
 }
 
-export type Frame = ValuesType<typeof FRAMES>;
+export type Frame = FRAMES;
 
 export interface FrameProps {
   Iframe: ComponentType<Omit<IIframe, "url">>;
@@ -40,6 +40,6 @@ export interface MappedFrame {
   icon?: string;
 }
 
-export interface FramesMap {
-  [key: string]: MappedFrame;
-}
+export type FramesMap = {
+  [key in Frame]: MappedFrame;
+};
